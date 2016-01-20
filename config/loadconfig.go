@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"os"
 	"time"
-	"zk"
+
+	"github.com/samuel/go-zookeeper/zk"
 )
 
 func LoadConfigByZK(zkserver []string, path string, watch bool) (*Config, error) {
