@@ -229,3 +229,12 @@ func (this *Config) MustStringSlice(section, key string, defaultval []string) []
 
 	return value
 }
+
+func (this *Config)MustSplitStringSlice(section,key string,spilt string,defaultval []string)[]string{
+	value,err := this.getValue(section,key)
+	if len(value) == 0 || err != nil{
+		return defaultval
+	}
+
+	return strings.Split(value[0],spilt)
+}
