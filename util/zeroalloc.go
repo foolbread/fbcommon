@@ -7,8 +7,10 @@ package util
 
 import "unsafe"
 
-func StringToByteSlice(s string) []byte {
-	return *(*[]byte)(unsafe.Pointer(&s))
+func StringToByteSlice(s string) (b []byte) {
+	*(*string)(unsafe.Pointer(&b)) = s
+	*(*int)(unsafe.Pointer(uintptr(unsafe.Pointer(&b)) + 2*unsafe.Sizeof(&b))) = len(s)
+	return
 }
 
 func ByteSliceToString(b []byte) string {
